@@ -2,8 +2,6 @@ import React from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-//commento di test
-
 //rafce to create a componet fast
 const Header = () => {
   return (
@@ -11,7 +9,7 @@ const Header = () => {
       <Navbar bg="dark" variant='dark' expand="lg" collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand>MyShope</Navbar.Brand>
+            <Navbar.Brand>MyShop</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
