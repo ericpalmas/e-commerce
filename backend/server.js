@@ -1,4 +1,5 @@
 //in frontend i use import, here i use require
+import morgan from 'morgan'
 import path from 'path'
 import express from 'express'
 import dotenv from 'dotenv'
@@ -16,6 +17,12 @@ dotenv.config()
 connectDB();
 
 const app = express()
+
+//if we are in developer mode
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'))
+
+}
 
 // with this instruction i can pass json to the server
 app.use(express.json())
