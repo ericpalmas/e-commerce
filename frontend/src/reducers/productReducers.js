@@ -22,7 +22,8 @@ import {
     PRODUCT_CREATE_REVIEW_REQUEST,
     PRODUCT_TOP_FAIL,
     PRODUCT_TOP_SUCCESS,
-    PRODUCT_TOP_REQUEST
+    PRODUCT_TOP_REQUEST,
+    PRODUCT_DETAILS_CLEAR
 } from '../constants/productConstants'
 
 // in the lasta version i add the pagination (current page, and number of page)
@@ -45,14 +46,21 @@ export const productListReducer = (state = { products: [] }, action) => {
 }
 
 
-export const productDetailsReducer = (state = { product: { reviews: [] } }, action) => {
+
+
+export const productDetailsReducer = (
+    state = { product: { reviews: [] } },
+    action
+) => {
     switch (action.type) {
         case PRODUCT_DETAILS_REQUEST:
-            return { loading: true, ...state }
+            return { ...state, loading: true }
         case PRODUCT_DETAILS_SUCCESS:
             return { loading: false, product: action.payload }
         case PRODUCT_DETAILS_FAIL:
             return { loading: false, error: action.payload }
+        case PRODUCT_DETAILS_CLEAR:
+            return { loading: true, product: { reviews: [] } };
         default:
             return state
     }

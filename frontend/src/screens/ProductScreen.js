@@ -9,6 +9,7 @@ import Meta from '../components/Meta'
 import {
     listProductDetails,
     createProductReview,
+    clearProductDetails
 } from '../actions/productActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 
@@ -32,16 +33,21 @@ const ProductScreen = ({ history, match }) => {
         error: errorProductReview,
     } = productReviewCreate
 
+
     useEffect(() => {
-        if (successProductReview) {
-            setRating(0)
-            setComment('')
-        }
         if (!product._id || product._id !== match.params.id) {
             dispatch(listProductDetails(match.params.id))
             dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
         }
-    }, [dispatch, match, successProductReview])
+        if (successProductReview) {
+            setRating(0)
+            setComment('')
+        }
+        return () => {
+            dispatch(clearProductDetails());
+        };
+    }, [dispatch, match]);
+
 
     const addToCartHandler = () => {
         history.push(`/cart/${match.params.id}?qty=${qty}`)
