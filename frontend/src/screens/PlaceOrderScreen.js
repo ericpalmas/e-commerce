@@ -26,7 +26,6 @@ const PlaceOrderScreen = ({ history }) => {
 
     cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
 
-
     const orderCreate = useSelector(state => state.orderCreate)
     const { order, success, error } = orderCreate
 
@@ -38,7 +37,6 @@ const PlaceOrderScreen = ({ history }) => {
     }, [history, success])
 
     const placeOrderHandler = () => {
-
         dispatch(createOrder({
             orderItems: cart.cartItems,
             shippingAddress: cart.shippingAddress,
@@ -48,7 +46,6 @@ const PlaceOrderScreen = ({ history }) => {
             taxPrice: cart.taxPrice,
             totalPrice: cart.totalPrice
         }))
-
     }
 
     return (
